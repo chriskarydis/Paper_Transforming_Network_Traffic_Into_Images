@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+*.pyo
+*:Zone.Identifier
+.DS_Store
+*.pkl
+*.pt
+*.pth
+*.npz
+*.png
+*.jpg
+*.csv
+*.json
+data/
+models/
+images_*/
