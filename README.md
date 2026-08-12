@@ -8,10 +8,12 @@ A network intrusion detection system that fuses three views of the same traffic 
 
 ## Repository contents
 
-This repository contains the **pipeline code** described in the paper: dataset splitting, image/feature generation, model training, ensemble evaluation and the deployed inference application. It does **not** include:
+This repository contains the **pipeline code** described in the paper (dataset splitting, image/feature generation, model training, ensemble evaluation and the deployed inference application) plus the **raw attack pcaps and the authors' own benign capture** (`data/raw_pcaps/`, 225MB), so the full pipeline can be reproduced end to end from this repository alone for everything except one file.
 
-- **Raw pcap data.** The attack captures originate from Rose et al.'s public release. The benign class combines the authors' own captures with a subset of CICIDS-2017. See [Data sources](#data-sources) below for where to obtain these.
-- **Trained model weights.** These are reproducible by running the training scripts below on the source data. No pretrained checkpoints are distributed here.
+Not included here:
+
+- **The CICIDS-2017 benign subset** (534MB, one file). This single file exceeds GitHub's 100MB per-file limit, so it is instead distributed via the full dataset package on Zenodo: **[DOI placeholder, see Data sources]**. It can also be obtained directly from CICIDS-2017's own release.
+- **Trained model weights.** These are reproducible by running the training scripts below on the included/linked source data. No pretrained checkpoints are distributed here.
 
 ## Repository structure
 
@@ -49,10 +51,16 @@ The flow-level RGB image encoding (Section IV of the paper) required adding an `
 
 ## Data sources
 
-- **Attack pcaps (15 classes):** Rose et al., *913 Malicious Network Traffic PCAPs and Binary Visualisation Images Dataset*. See the citation in the paper for the dataset's official release location.
-- **Benign class:** a subset of [CICIDS-2017](https://www.unb.ca/cic/datasets/ids-2017.html) (Canadian Institute for Cybersecurity), combined with traffic captured directly by the authors. CICIDS-2017 has its own access terms. Obtain it from the official source above rather than from a third-party mirror.
+```
+data/raw_pcaps/
+  malicious/    15 attack-family captures (0day.pcap, blackEnergy.pcap, mirai.pcap, ...), 225MB total
+  benign/       normal_browsing.pcap, the authors' own capture, 244KB
+```
 
-After obtaining both, use `split_flows.py` to split multi-flow captures into per-flow pcaps, then `experiments/clean_split/build_manifest.py` to reproduce the unified 70/15/15 split (fixed seed = 42) used for this paper's headline results.
+- **Attack pcaps (15 classes, included above):** originally released by Rose et al., *913 Malicious Network Traffic PCAPs and Binary Visualisation Images Dataset*, IEEE DataPort, doi:10.21227/pda3-zy88 (CC BY, redistributed here with attribution per IEEE DataPort's Open Access terms). See the citation in the paper for full details.
+- **Benign class:** `normal_browsing.pcap` (included above) plus a subset of [CICIDS-2017](https://www.unb.ca/cic/datasets/ids-2017.html) (Canadian Institute for Cybersecurity). CIC's stated policy permits redistribution with citation ("You may redistribute, republish, and mirror our datasets in any form; however, any use or redistribution of the data must include a citation to the dataset and the research paper."), but the file itself is too large for this repository. Get it from the full package on Zenodo (**DOI placeholder**) or directly from CICIDS-2017's own release.
+
+After obtaining the CICIDS-2017 file, use `split_flows.py` to split multi-flow captures into per-flow pcaps, then `experiments/clean_split/build_manifest.py` to reproduce the unified 70/15/15 split (fixed seed = 42) used for this paper's headline results.
 
 ## Dependencies
 
