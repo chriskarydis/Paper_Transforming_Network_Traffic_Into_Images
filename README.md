@@ -12,7 +12,7 @@ This repository contains the **pipeline code** described in the paper (dataset s
 
 Not included here:
 
-- **The CICIDS-2017 benign subset** (534MB, one file). This single file exceeds GitHub's 100MB per-file limit, so it is instead distributed via the full dataset package on Zenodo: **[DOI placeholder, see Data sources]**. It can also be obtained directly from CICIDS-2017's own release.
+- **The CICIDS-2017 benign subset** (534MB, one file). This single file exceeds GitHub's 100MB per-file limit, so it is instead distributed via the full dataset package on Zenodo: https://doi.org/10.5281/zenodo.21926835. It can also be obtained directly from CICIDS-2017's own release.
 - **Trained model weights.** These are reproducible by running the training scripts below on the included/linked source data. No pretrained checkpoints are distributed here.
 
 ## Repository structure
@@ -58,7 +58,7 @@ data/raw_pcaps/
 ```
 
 - **Attack pcaps (15 classes, included above):** originally released by Rose et al., *913 Malicious Network Traffic PCAPs and Binary Visualisation Images Dataset*, IEEE DataPort, doi:10.21227/pda3-zy88 (CC BY, redistributed here with attribution per IEEE DataPort's Open Access terms). See the citation in the paper for full details.
-- **Benign class:** `normal_browsing.pcap` (included above) plus a subset of [CICIDS-2017](https://www.unb.ca/cic/datasets/ids-2017.html) (Canadian Institute for Cybersecurity). CIC's stated policy permits redistribution with citation ("You may redistribute, republish, and mirror our datasets in any form; however, any use or redistribution of the data must include a citation to the dataset and the research paper."), but the file itself is too large for this repository. Get it from the full package on Zenodo (**DOI placeholder**) or directly from CICIDS-2017's own release.
+- **Benign class:** `normal_browsing.pcap` (included above) plus a subset of [CICIDS-2017](https://www.unb.ca/cic/datasets/ids-2017.html) (Canadian Institute for Cybersecurity). CIC's stated policy permits redistribution with citation ("You may redistribute, republish, and mirror our datasets in any form; however, any use or redistribution of the data must include a citation to the dataset and the research paper."), but the file itself is too large for this repository. Get it from the full package on Zenodo (https://doi.org/10.5281/zenodo.21926835) or directly from CICIDS-2017's own release.
 
 After obtaining the CICIDS-2017 file, use `split_flows.py` to split multi-flow captures into per-flow pcaps, then `experiments/clean_split/build_manifest.py` to reproduce the unified 70/15/15 split (fixed seed = 42) used for this paper's headline results.
 
